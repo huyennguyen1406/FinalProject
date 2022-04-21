@@ -1,0 +1,41 @@
+<section id="newmostsongs">
+  <div class="new-most-song">
+    <div class="row p-3">
+      <div class="col-6">
+        <h4 class="font-weight-bold">Bài hát</h4>
+        <ul class="list-group br-1" *ngFor="let song of songList ; index as i">
+          <li class="list-group-item pb-1" *ngIf="i < 4">
+            <a class="name-of-song" [routerLink]="['song',song.idSong]">
+              <img width="40" height="40" src="{{song.avatarUrlSong}}" class="img thumbnail pull-left mr-2">
+              <h6 class="mb-1 text-dark"><b>{{song.nameSong}}</b></h6>
+            </a>
+            <span style="float: left">
+              <p class="mb-0 singer">Singer: {{song.user.name}}</p>
+              </span>
+          </li>
+        </ul>
+        <a class="text-info">
+          <div class="text-center mt-3"><a [routerLink]="['/songs']">Xem tất cả</a></div>
+        </a>
+      </div>
+
+      <div class="col-6">
+        <h4 class="font-weight-bold">Playlist</h4>
+        <ul class="list-group" *ngFor="let playlist of playlists ; index as i">
+          <li class="list-group-item pb-1" *ngIf="i < 4" >
+            <a class="name-of-song" [routerLink]="['playlist',playlist.idPlaylist]">
+              <img src="{{playlist.avatarPlaylistUrl}}" width="40" height="40" alt="" class="img thumbnail pull-left mr-2">
+              <h6 class="mb-1 text-dark"><b>{{playlist.namePlaylist}}</b></h6>
+            </a>
+            <span style="float: left">
+              <p class="mb-0 singer">Owner: {{playlist.user.name}}</p>
+              </span>
+          </li>
+        </ul>
+        <a class="text-info">
+          <div class="text-center mt-3"><a [routerLink]="['/playlists']">Xem tất cả</a></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

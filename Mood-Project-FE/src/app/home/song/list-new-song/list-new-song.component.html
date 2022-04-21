@@ -1,0 +1,18 @@
+<div class="carousel-gallery">
+  <h3 class="mb-1 text-dark" style="padding-bottom: 20px"><b>Mới Phát Hành</b></h3>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let song of songList">
+        <a  data-fancybox="gallery" [routerLink]="['song/', song.idSong]">
+          <div class="image" style="background-image: url({{song.avatarUrlSong}})" >
+            <div class="overlay">
+              <em class="mdi mdi-play-circle"></em>
+            </div>
+          </div>
+        </a>
+        <h6 style="margin-top: 10px; text-align: left">{{song.nameSong}}</h6>
+      </div>
+    </div>
+    <div style="margin-top: 50px"></div>
+  </div>
+</div>

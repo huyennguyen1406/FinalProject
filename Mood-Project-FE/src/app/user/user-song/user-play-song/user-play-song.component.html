@@ -1,0 +1,131 @@
+<div class="container">
+  <app-navbar-user></app-navbar-user>
+  <div class="example-container">
+    <div style="float: left; margin-left: 70px">
+      <div id="white-player">
+        <div class="white-player-top">
+          <div class="center">
+            <span class="now-playing"><h4><b>{{song.nameSong}}</b></h4></span>
+          </div>
+
+        </div>
+        <div class="text-center"><b>Ca sĩ: </b>
+          <span>{{song.user.name}}</span>
+        </div>
+
+        <div id="white-player-center">
+          <img data-amplitude-song-info="cover_art_url" class="main-album-art"/>
+
+          <div class="song-meta-data">
+            <span data-amplitude-song-info="name" class="song-name"></span>
+            <span data-amplitude-song-info="artist" class="song-artist"></span>
+          </div>
+
+          <div class="time-progress">
+            <div id="progress-container">
+              <input type="range" class="amplitude-song-slider"/>
+              <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+              <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+            </div>
+
+            <div class="time-container">
+                <span class="current-time">
+                  <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
+                </span>
+              <span class="duration">
+                    <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+                  </span>
+            </div>
+          </div>
+        </div>
+
+        <div id="white-player-controls">
+          <div class="amplitude-repeat" id="repeat"></div>
+          <div class="amplitude-prev" id="previous"></div>
+          <div class="amplitude-play-pause" id="play-pause"></div>
+          <div class="amplitude-next" id="next"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container amplitude-stop">
+      <div class="new-most-song mt-5">
+        <div class="row p-5">
+          <div class="col">
+            <h4 class="font-weight-bold">Có thể bạn sẽ thích</h4>
+            <table class="table table-light">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Tên bài hát</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let song of songList, let i = index">
+              <tr (click)="changeSong(song.idSong)" *ngIf="i<5" class="songs">
+                <th scope="row">{{i + 1}}</th>
+                <td><img style="float: left" src="{{song.avatarUrlSong}}" width="40" height="40" alt=""
+                         class="img thumbnail pull-left mr-2"></td>
+                <td>{{song.nameSong}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="bg-light p-3 mb-4 container" style="border-radius: 5px">
+    <table class="table">
+      <tr>
+        <td>
+               <span>
+                  <div>
+<!--                      <div *ngIf="like.song.id == song.id && like.user.id == userId">-->
+                      <a (click)="likeSong(user.id, song.idSong)" style="text-decoration: none">
+                      <i class="fa fa-heart text-danger"></i>
+                        {{totalLike}}</a>
+                    <!--                   </div>-->
+                  </div>
+          </span>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <section class="bg-light p-3 my-4" style="border-radius: 5px">
+    <div>
+      <div class="px-5">
+        <h3 class="mb-3">Bình luận</h3>
+        <div>
+          <ul class="list-group br-1"
+              *ngFor="let comment of commentSong | paginate: { itemsPerPage: 4, currentPage: p };">
+            <li class="list-group-item pb-1">
+              <div class="name-of-song">
+                <img src="{{comment.userCommentSong.avatarURL}}" width="40" height="40" style="float: left"
+                     class="img thumbnail pull-left mr-2">
+              </div>
+              <span>
+                       <h6 class="mb-1 text-dark"><b>{{comment.userCommentSong.name}}</b></h6>
+                         <p>{{comment.contentComment}}</p>
+                    </span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onEnter()">
+            <input class="input-group" type="text" formControlName="comment" placeholder="Viết bình luận...">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+

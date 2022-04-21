@@ -1,0 +1,44 @@
+<div>
+  <div id="mast-text" style="margin-top: 35px">
+      <div class="text-center">
+        <h1 class="mx-auto my-0">Bài hát nổi bật</h1>
+    </div>
+  </div>
+  <div id="carousel" >
+    <div class="hideLeft">
+      <a [routerLink]="['song',song1.idSong]">
+        <img src="{{song1.avatarUrlSong}}">
+      </a>
+    </div>
+
+    <div class="prevLeftSecond">
+      <a [routerLink]="['song',song2.idSong]">
+        <img src="{{song2.avatarUrlSong}}">
+      </a>
+    </div>
+
+    <div class="prev">
+      <a [routerLink]="['song',song3.idSong]">
+        <img src="{{song3.avatarUrlSong}}">
+      </a>
+    </div>
+
+    <div class="selected">
+      <a [routerLink]="['song',song4.idSong]">
+        <img src="{{song4.avatarUrlSong}}">
+      </a>
+    </div>
+
+    <div class="next">
+      <a [routerLink]="['song',song5.idSong]">
+        <img src="{{song5.avatarUrlSong}}">
+      </a>
+    </div>
+
+    <div class="nextRightSecond">
+      <a [routerLink]="['song',song6.idSong]">
+        <img src="{{song6.avatarUrlSong}}">
+      </a>
+    </div>
+  </div>
+</div>
